@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* === PRIMARY COLORS === */
+  --primary: #3B82F6;
+  --primary-light: #60A5FA;
+  --primary-dark: #2563EB;
+
+  /* === SECONDARY - Vibrant Violet === */
+  --secondary: #8B5CF6;
+  --secondary-light: #A78BFA;
+  --secondary-dark: #7C3AED;
+
+  /* === ACCENT - Electric Cyan === */
+  --accent: #06B6D4;
+  --accent-light: #22D3EE;
+  --accent-dark: #0891B2;
+
+  /* === ENERGY - Hot Pink (CTAs) === */
+  --energy: #EC4899;
+  --energy-light: #F472B6;
+  --energy-dark: #DB2777;
+
+  /* === BACKGROUND - Dark Theme === */
+  --background: #0A0A0F;
+  --background-alt: #12121A;
+  --background-elevated: #1A1A25;
+
+  /* === TEXT === */
+  --foreground: #F8FAFC;
+  --foreground-muted: #94A3B8;
+
+  /* === BORDERS === */
+  --border: #2D2D3A;
+  --border-light: #3D3D4A;
+
+  /* === GRADIENTS === */
+  --gradient-primary: linear-gradient(135deg, var(--primary), var(--secondary));
+  --gradient-energy: linear-gradient(135deg, var(--energy), var(--secondary));
+  --gradient-accent: linear-gradient(135deg, var(--accent), var(--primary));
+
+  /* === GLOW EFFECTS === */
+  --glow-primary: 0 0 40px rgba(59, 130, 246, 0.3);
+  --glow-secondary: 0 0 40px rgba(139, 92, 246, 0.3);
+  --glow-accent: 0 0 40px rgba(6, 182, 212, 0.3);
+  --glow-energy: 0 0 40px rgba(236, 72, 153, 0.3);
 }
 
 @theme inline {
+  /* Colors */
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-secondary-light: var(--secondary-light);
+  --color-secondary-dark: var(--secondary-dark);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-accent-dark: var(--accent-dark);
+  --color-energy: var(--energy);
+  --color-energy-light: var(--energy-light);
+  --color-energy-dark: var(--energy-dark);
   --color-background: var(--background);
+  --color-background-alt: var(--background-alt);
+  --color-background-elevated: var(--background-elevated);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-border: var(--border);
+  --color-border-light: var(--border-light);
+
+  /* Fonts */
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* === BASE STYLES === */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === SELECTION === */
+::selection {
+  background: var(--primary);
+  color: var(--foreground);
+}
+
+/* === GRADIENT TEXT UTILITY === */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* === FOCUS STYLES === */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-light);
 }

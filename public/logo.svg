@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <defs>
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#8B5CF6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Hexagonal icon -->
+  <g transform="translate(0, 4)">
+    <polygon points="20,2 35,11 35,29 20,38 5,29 5,11"
+             stroke="url(#logoGrad)" stroke-width="2.5" fill="none"/>
+    <polygon points="20,10 30,16 30,26 20,32 10,26 10,16"
+             stroke="#06B6D4" stroke-width="1.5" fill="none" opacity="0.7"/>
+    <polygon points="20,15 27,24 13,24" fill="url(#logoGrad)"/>
+  </g>
+
+  <!-- Text: Otoniq AI -->
+  <text x="48" y="32" font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif" font-size="24" font-weight="700" fill="url(#logoGrad)">Otoniq</text>
+  <text x="138" y="32" font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif" font-size="24" font-weight="700" fill="#F8FAFC">AI</text>
+</svg>

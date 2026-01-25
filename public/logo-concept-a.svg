@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" fill="none">
+  <defs>
+    <linearGradient id="gradA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#8B5CF6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="120" fill="#0A0A0F"/>
+
+  <!-- Concept A: Abstract "O" with flow/infinity feel -->
+  <g transform="translate(20, 20)">
+    <!-- Flowing ribbon forming abstract O -->
+    <path d="M40 8 C60 8 72 20 72 40 C72 60 60 72 40 72 C20 72 8 60 8 40 C8 20 20 8 40 8"
+          stroke="url(#gradA)" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- Inner accent -->
+    <circle cx="40" cy="40" r="16" stroke="#06B6D4" stroke-width="2" fill="none" opacity="0.6"/>
+    <!-- Center dot -->
+    <circle cx="40" cy="40" r="6" fill="url(#gradA)"/>
+  </g>
+
+  <!-- Text -->
+  <text x="110" y="72" font-family="system-ui, -apple-system, sans-serif" font-size="42" font-weight="700" fill="url(#gradA)">Otoniq</text>
+  <text x="290" y="72" font-family="system-ui, -apple-system, sans-serif" font-size="42" font-weight="700" fill="#F8FAFC">AI</text>
+</svg>
