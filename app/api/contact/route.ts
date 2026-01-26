@@ -36,9 +36,8 @@ export async function POST(request: Request) {
     const resend = getResend();
 
     // Send notification email to Otoniq AI
-    // Using Resend's default sender until otoniqai.com is verified in Resend
     await resend.emails.send({
-      from: "Otoniq AI <onboarding@resend.dev>",
+      from: "Otoniq AI <noreply@otoniqai.com>",
       to: ["malek@otoniqai.com"],
       replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
@@ -92,7 +91,7 @@ export async function POST(request: Request) {
 
     // Send confirmation email to the user
     await resend.emails.send({
-      from: "Otoniq AI <onboarding@resend.dev>",
+      from: "Otoniq AI <noreply@otoniqai.com>",
       to: [email],
       subject: "Thanks for reaching out to Otoniq AI!",
       html: `
