@@ -292,10 +292,16 @@ export function Contact() {
                 Book a free 30-minute discovery call to discuss your automation
                 needs.
               </p>
-              <Button variant="primary" size="sm" className="w-full">
-                Schedule a Call
-                <ArrowRight size={16} />
-              </Button>
+              <a
+                href="https://calendly.com/malek-otoniqai/discovery-call"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="primary" size="sm" className="w-full">
+                  Schedule a Call
+                  <ArrowRight size={16} />
+                </Button>
+              </a>
             </Card>
           </motion.div>
         </div>

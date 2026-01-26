@@ -128,15 +128,20 @@ export function Hero() {
             variants={fadeInUp}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Button
-              variant="gradient"
-              size="lg"
-              onClick={() => handleScrollTo("#contact")}
-              className="w-full sm:w-auto"
+            <a
+              href="https://calendly.com/malek-otoniqai/discovery-call"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Book a Discovery Call
-              <ArrowRight size={18} />
-            </Button>
+              <Button
+                variant="gradient"
+                size="lg"
+                className="w-full sm:w-auto"
+              >
+                Book a Discovery Call
+                <ArrowRight size={18} />
+              </Button>
+            </a>
             <Button
               variant="outline"
               size="lg"
