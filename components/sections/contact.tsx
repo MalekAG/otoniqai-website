@@ -253,10 +253,10 @@ export function Contact() {
                     Email Us
                   </h4>
                   <a
-                    href="mailto:hello@otoniqai.com"
+                    href="mailto:malek@otoniqai.com"
                     className="text-foreground-muted hover:text-primary transition-colors"
                   >
-                    hello@otoniqai.com
+                    malek@otoniqai.com
                   </a>
                 </div>
               </div>
