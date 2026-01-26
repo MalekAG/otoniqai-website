@@ -9,6 +9,7 @@ const steps = [
   {
     number: "01",
     icon: Phone,
+    iconLabel: "Discovery call phone icon",
     title: "Discovery Call",
     description:
       "We start with a conversation to understand your challenges, goals, and current tech stack. No pressure, just honest assessment.",
@@ -16,6 +17,7 @@ const steps = [
   {
     number: "02",
     icon: PenTool,
+    iconLabel: "Solution design pen tool icon",
     title: "Solution Design",
     description:
       "Based on our discussion, we create a clear proposal with scope, timeline, and pricing. You know exactly what you're getting.",
@@ -23,6 +25,7 @@ const steps = [
   {
     number: "03",
     icon: Code,
+    iconLabel: "Development code icon",
     title: "Development",
     description:
       "We build your solution with regular check-ins and progress updates. You're never left wondering what's happening.",
@@ -30,6 +33,7 @@ const steps = [
   {
     number: "04",
     icon: Rocket,
+    iconLabel: "Launch rocket icon",
     title: "Launch & Support",
     description:
       "After thorough testing, we deploy and provide documentation. We're here for questions and optimizations as you scale.",
@@ -96,7 +100,7 @@ export function Process() {
                         "group-hover:border-primary/50 transition-all duration-300"
                       )}
                     >
-                      <step.icon className="w-12 h-12 text-primary" />
+                      <step.icon className="w-12 h-12 text-primary" aria-label={step.iconLabel} role="img" />
                     </div>
                     {/* Step number badge */}
                     <div
@@ -172,7 +176,7 @@ export function Process() {
                     )}
                   >
                     <div className="flex items-center gap-3 mb-3">
-                      <step.icon className="w-5 h-5 text-primary" />
+                      <step.icon className="w-5 h-5 text-primary" aria-hidden="true" />
                       <h3 className="font-heading text-lg font-semibold text-foreground">
                         {step.title}
                       </h3>

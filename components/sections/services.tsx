@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 const services = [
   {
     icon: Cog,
+    iconLabel: "Workflow automation gear icon",
     title: "Workflow Automation",
     description:
       "Connect your tools and automate repetitive tasks. From data entry to report generation, we streamline operations.",
@@ -20,6 +21,7 @@ const services = [
   },
   {
     icon: Bot,
+    iconLabel: "AI robot icon",
     title: "AI-Powered Tools",
     description:
       "Custom AI assistants and tools built for your specific use cases. Chatbots, content tools, and decision support systems.",
@@ -32,6 +34,7 @@ const services = [
   },
   {
     icon: Lightbulb,
+    iconLabel: "Process consulting lightbulb icon",
     title: "Process Consulting",
     description:
       "We analyze your workflows to identify automation opportunities. Get a clear roadmap before investing in development.",
@@ -44,6 +47,7 @@ const services = [
   },
   {
     icon: Plug,
+    iconLabel: "Integration services plug icon",
     title: "Integration Services",
     description:
       "Seamlessly connect your existing software stack. Make your tools work together intelligently.",
@@ -108,7 +112,7 @@ export function Services() {
                     size="lg"
                     className="mb-6"
                   >
-                    <service.icon />
+                    <service.icon aria-label={service.iconLabel} role="img" />
                   </IconBox>
 
                   {/* Title */}
@@ -136,8 +140,9 @@ export function Services() {
                             service.color === "accent" && "bg-accent/20 text-accent",
                             service.color === "energy" && "bg-energy/20 text-energy"
                           )}
+                          aria-hidden="true"
                         >
-                          <Check size={12} />
+                          <Check size={12} aria-hidden="true" />
                         </span>
                         <span className="text-foreground-muted">{feature}</span>
                       </li>

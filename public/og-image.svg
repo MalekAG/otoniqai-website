@@ -1,0 +1,57 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="100%" style="stop-color:#12121a"/>
+    </linearGradient>
+    <linearGradient id="text-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="50%" style="stop-color:#a855f7"/>
+      <stop offset="100%" style="stop-color:#6366f1"/>
+    </linearGradient>
+    <linearGradient id="accent-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#6366f1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg-gradient)"/>
+
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="200" fill="#8b5cf6" opacity="0.05"/>
+  <circle cx="1100" cy="530" r="250" fill="#6366f1" opacity="0.05"/>
+  <circle cx="600" cy="315" r="150" fill="#a855f7" opacity="0.03"/>
+
+  <!-- Grid pattern -->
+  <g opacity="0.1">
+    <line x1="0" y1="157" x2="1200" y2="157" stroke="#8b5cf6" stroke-width="1"/>
+    <line x1="0" y1="315" x2="1200" y2="315" stroke="#8b5cf6" stroke-width="1"/>
+    <line x1="0" y1="472" x2="1200" y2="472" stroke="#8b5cf6" stroke-width="1"/>
+    <line x1="300" y1="0" x2="300" y2="630" stroke="#8b5cf6" stroke-width="1"/>
+    <line x1="600" y1="0" x2="600" y2="630" stroke="#8b5cf6" stroke-width="1"/>
+    <line x1="900" y1="0" x2="900" y2="630" stroke="#8b5cf6" stroke-width="1"/>
+  </g>
+
+  <!-- Logo hexagon -->
+  <g transform="translate(540, 140)">
+    <polygon points="60,0 120,35 120,105 60,140 0,105 0,35" fill="url(#accent-gradient)" opacity="0.2"/>
+    <polygon points="60,10 110,40 110,100 60,130 10,100 10,40" fill="none" stroke="url(#accent-gradient)" stroke-width="2"/>
+    <text x="60" y="85" font-family="system-ui, -apple-system, sans-serif" font-size="40" font-weight="bold" fill="#ffffff" text-anchor="middle">O</text>
+  </g>
+
+  <!-- Company name -->
+  <text x="600" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="bold" fill="#ffffff" text-anchor="middle">Otoniq AI</text>
+
+  <!-- Tagline -->
+  <text x="600" y="410" font-family="system-ui, -apple-system, sans-serif" font-size="36" fill="url(#text-gradient)" text-anchor="middle">Automate. Elevate. Dominate.</text>
+
+  <!-- Description -->
+  <text x="600" y="480" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="#a1a1aa" text-anchor="middle">AI Automation &amp; Workflow Solutions for Business</text>
+
+  <!-- Bottom accent line -->
+  <rect x="450" y="520" width="300" height="3" fill="url(#accent-gradient)" rx="1.5"/>
+
+  <!-- URL -->
+  <text x="600" y="580" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#71717a" text-anchor="middle">otoniqai.com</text>
+</svg>
