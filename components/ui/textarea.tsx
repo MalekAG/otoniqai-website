@@ -30,9 +30,9 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             id={textareaId}
             className={cn(
               "w-full px-4 py-3 rounded-xl",
-              "bg-background-alt",
+              "bg-white",
               "border-2 border-border",
-              "text-foreground placeholder:text-foreground-muted",
+              "text-foreground placeholder:text-foreground-muted/60",
               "transition-all duration-200",
               "focus:outline-none focus:border-primary focus:ring-0",
               "hover:border-border-light",
@@ -50,8 +50,8 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             initial={false}
             animate={{
               boxShadow: isFocused
-                ? "0 0 0 4px rgba(59, 130, 246, 0.1)"
-                : "0 0 0 0px rgba(59, 130, 246, 0)",
+                ? "0 0 0 4px rgba(13, 94, 107, 0.08)"
+                : "0 0 0 0px rgba(13, 94, 107, 0)",
             }}
             transition={{ duration: 0.2 }}
           />

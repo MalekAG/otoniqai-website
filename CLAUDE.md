@@ -1,6 +1,8 @@
-# OtoniqAI Website
+# OtoniqAI Website (Marketing Site)
 
-Next.js marketing site for OtoniqAI.
+Next.js marketing site for OtoniqAI (otoniqai.com). Landing pages, product info, pricing, contact.
+
+> **Related project:** `plc-documenter` is the actual PLC Documenter SaaS app (documenter.otoniqai.com) with auth, dashboard, upload, viewer, etc. This repo is only the marketing site — don't confuse them.
 
 ## Commands
 npm run dev      # localhost:3000

@@ -43,12 +43,12 @@ export function Header() {
           "fixed top-0 left-0 right-0 z-50",
           "transition-all duration-300",
           isScrolled
-            ? "bg-background/80 backdrop-blur-xl border-b border-border/50"
+            ? "bg-[#FAF8F5]/90 backdrop-blur-xl border-b border-border"
             : "bg-transparent"
         )}
       >
         <Container>
-          <nav className="flex items-center justify-between h-16 md:h-20">
+          <nav className="flex items-center justify-between h-20 md:h-24">
             {/* Logo */}
             <a
               href="#"
@@ -75,7 +75,7 @@ export function Header() {
                     "text-sm font-medium text-foreground-muted",
                     "hover:text-foreground transition-colors duration-200",
                     "relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0",
-                    "after:bg-gradient-to-r after:from-primary after:to-secondary",
+                    "after:bg-accent",
                     "after:transition-all after:duration-300 hover:after:w-full"
                   )}
                 >
@@ -90,9 +90,8 @@ export function Header() {
                 }}
                 className={cn(
                   "px-5 py-2.5 rounded-lg text-sm font-medium",
-                  "bg-gradient-to-r from-primary to-secondary text-white",
-                  "hover:shadow-lg hover:shadow-primary/25 transition-all duration-300",
-                  "hover:scale-105"
+                  "bg-primary text-white",
+                  "hover:bg-primary-light hover:shadow-md hover:shadow-primary/15 transition-all duration-300"
                 )}
               >
                 Get Started
@@ -120,7 +119,7 @@ export function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
@@ -130,7 +129,7 @@ export function Header() {
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className={cn(
                 "fixed top-0 right-0 bottom-0 w-[280px] z-40 md:hidden",
-                "bg-background-elevated border-l border-border",
+                "bg-white border-l border-border",
                 "flex flex-col pt-24 px-6"
               )}
             >
@@ -166,7 +165,7 @@ export function Header() {
                   }}
                   className={cn(
                     "mt-4 py-3 px-4 rounded-lg text-lg font-medium text-center",
-                    "bg-gradient-to-r from-primary to-secondary text-white"
+                    "bg-primary text-white"
                   )}
                 >
                   Get Started

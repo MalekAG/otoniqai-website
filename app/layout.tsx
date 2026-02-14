@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { DM_Sans, Space_Grotesk } from "next/font/google";
-import { PageLoader, CursorGlow, NoiseTexture, BackToTop } from "@/components/ui";
+import { DM_Sans, Instrument_Sans } from "next/font/google";
+import { BackToTop, ScrollProgress } from "@/components/ui";
 import { SmoothScrollProvider } from "@/components/providers";
 import "./globals.css";
 
@@ -10,8 +10,8 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const instrumentSans = Instrument_Sans({
+  variable: "--font-instrument-sans",
   subsets: ["latin"],
   display: "swap",
 });
@@ -259,7 +259,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         <script
           type="application/ld+json"
@@ -281,12 +281,10 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${dmSans.variable} ${spaceGrotesk.variable} antialiased`}
+        className={`${dmSans.variable} ${instrumentSans.variable} antialiased`}
       >
-        <PageLoader />
-        <CursorGlow />
-        <NoiseTexture />
         <SmoothScrollProvider>
+          <ScrollProgress />
           {children}
           <BackToTop />
         </SmoothScrollProvider>

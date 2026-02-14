@@ -26,7 +26,8 @@ import {
   Card,
   Container,
   IconBox,
-  FloatingElements,
+  SectionHeading,
+  SectionDivider,
 } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
@@ -36,12 +37,6 @@ const DOCUMENTER_APP_URL =
   process.env.NEXT_PUBLIC_DOCUMENTER_APP_URL || "https://documenter.otoniqai.com";
 
 // ─── Animation Variants ───────────────────────────────────────────────────────
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-100px" },
-};
 
 const staggerContainer = {
   animate: {
@@ -66,7 +61,7 @@ const painPoints = [
     title: "Manual Documentation Is Tedious",
     description:
       "Engineers spend hours writing documentation that becomes outdated the moment code changes. Copy-paste from rungs to Word documents is nobody's idea of productive work.",
-    color: "energy" as const,
+    color: "primary" as const,
   },
   {
     icon: BookX,
@@ -74,7 +69,7 @@ const painPoints = [
     title: "No Cross-References",
     description:
       "Understanding which tags are used across which programs requires flipping between dozens of routines. There's no easy way to trace a signal through the entire project.",
-    color: "secondary" as const,
+    color: "primary" as const,
   },
   {
     icon: UserX,
@@ -128,7 +123,7 @@ const features = [
     title: "AI Descriptions",
     description:
       "Powered by Claude AI. Each routine gets a clear, plain-English description of what it does and why it matters.",
-    color: "secondary" as const,
+    color: "primary" as const,
   },
   {
     icon: GitCompareArrows,
@@ -144,7 +139,7 @@ const features = [
     title: "PDF & Excel Export",
     description:
       "Generate professional documentation ready for handover, audits, or commissioning packages.",
-    color: "energy" as const,
+    color: "primary" as const,
   },
   {
     icon: Users,
@@ -161,7 +156,7 @@ const features = [
     title: "Secure & Private",
     description:
       "Your PLC data stays safe. Files are processed securely and never shared. You control access to every project.",
-    color: "secondary" as const,
+    color: "primary" as const,
   },
 ];
 
@@ -199,7 +194,7 @@ const pricingTiers = [
     ],
     cta: "Contact Us",
     ctaHref: "mailto:malek@otoniqai.com",
-    variant: "gradient" as const,
+    variant: "primary" as const,
     highlighted: true,
     badge: "Coming Soon",
   },
@@ -221,58 +216,6 @@ export default function DocumenterPage() {
       <main>
         {/* ━━━ HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-          {/* Animated Background */}
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background-alt" />
-            <motion.div
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.5, 0.3],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-primary/20 blur-[100px]"
-            />
-            <motion.div
-              animate={{
-                scale: [1.2, 1, 1.2],
-                opacity: [0.3, 0.5, 0.3],
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1,
-              }}
-              className="absolute top-1/3 -right-32 w-96 h-96 rounded-full bg-accent/20 blur-[100px]"
-            />
-            <motion.div
-              animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.2, 0.4, 0.2],
-              }}
-              transition={{
-                duration: 12,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 2,
-              }}
-              className="absolute bottom-1/4 left-1/3 w-72 h-72 rounded-full bg-secondary/20 blur-[100px]"
-            />
-            <div
-              className="absolute inset-0 opacity-[0.02]"
-              style={{
-                backgroundImage: `linear-gradient(var(--foreground) 1px, transparent 1px),
-                                 linear-gradient(90deg, var(--foreground) 1px, transparent 1px)`,
-                backgroundSize: "64px 64px",
-              }}
-            />
-            <FloatingElements />
-          </div>
-
           <Container className="relative pt-32 pb-20 md:pt-40 md:pb-32">
             <motion.div
               variants={staggerContainer}
@@ -282,7 +225,7 @@ export default function DocumenterPage() {
             >
               {/* Badge */}
               <motion.div variants={staggerItem} className="mb-8">
-                <Badge variant="gradient" className="gap-2">
+                <Badge variant="primary" className="gap-2">
                   <Sparkles size={14} />
                   AI-Powered PLC Documentation
                 </Badge>
@@ -314,7 +257,7 @@ export default function DocumenterPage() {
               >
                 <a href={`${DOCUMENTER_APP_URL}/signup`}>
                   <Button
-                    variant="gradient"
+                    variant="primary"
                     size="lg"
                     className="w-full sm:w-auto"
                   >
@@ -383,7 +326,7 @@ export default function DocumenterPage() {
                             <div className="h-2 rounded bg-foreground/5 w-5/6 mt-1" />
                           </div>
                           <div className="flex gap-2 mt-4">
-                            <div className="h-8 rounded-lg bg-gradient-to-r from-primary/30 to-secondary/30 w-24" />
+                            <div className="h-8 rounded-lg bg-primary/20 w-24" />
                             <div className="h-8 rounded-lg bg-border/50 w-20" />
                           </div>
                         </div>
@@ -391,34 +334,26 @@ export default function DocumenterPage() {
                     </div>
                   </div>
                 </div>
-                {/* Glow effect behind mockup */}
-                <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 rounded-3xl blur-2xl -z-10" />
+                {/* Subtle shadow behind mockup */}
+                <div className="absolute -inset-4 bg-primary/5 rounded-3xl blur-2xl -z-10" />
               </motion.div>
             </motion.div>
           </Container>
         </section>
 
+        <SectionDivider />
+
         {/* ━━━ PROBLEM ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
         <section className="relative py-24 md:py-32">
           <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-b from-background-alt/50 to-background" />
+            <div className="absolute inset-0 bg-background-alt" />
           </div>
 
           <Container>
-            <motion.div
-              {...fadeInUp}
-              transition={{ duration: 0.5 }}
-              className="text-center mb-16 md:mb-20"
-            >
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                The Problem with PLC Documentation
-              </h2>
-              <p className="text-foreground-muted text-lg max-w-2xl mx-auto">
-                Every controls engineer knows the pain. Documentation is
-                critical, but the process is broken.
-              </p>
-            </motion.div>
+            <SectionHeading
+              title="The Problem with PLC Documentation"
+              subtitle="Every controls engineer knows the pain. Documentation is critical, but the process is broken."
+            />
 
             <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
               {painPoints.map((pain, index) => (
@@ -459,28 +394,19 @@ export default function DocumenterPage() {
           </Container>
         </section>
 
+        <SectionDivider />
+
         {/* ━━━ HOW IT WORKS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
         <section
           id="how-it-works"
           className="relative py-24 md:py-32 overflow-hidden"
         >
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-          </div>
 
           <Container>
-            <motion.div
-              {...fadeInUp}
-              transition={{ duration: 0.5 }}
-              className="text-center mb-16 md:mb-20"
-            >
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                How It Works
-              </h2>
-              <p className="text-foreground-muted text-lg max-w-2xl mx-auto">
-                From L5X file to complete documentation in three simple steps.
-              </p>
-            </motion.div>
+            <SectionHeading
+              title="How It Works"
+              subtitle="From L5X file to complete documentation in three simple steps."
+            />
 
             {/* Desktop Timeline */}
             <div className="hidden lg:block">
@@ -492,7 +418,7 @@ export default function DocumenterPage() {
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 1, delay: 0.5 }}
-                  className="absolute top-16 left-0 right-0 h-px bg-gradient-to-r from-primary via-secondary to-accent origin-left"
+                  className="absolute top-16 left-0 right-0 h-px bg-primary/40 origin-left"
                 />
 
                 <div className="grid grid-cols-3 gap-8">
@@ -525,7 +451,7 @@ export default function DocumenterPage() {
                         <div
                           className={cn(
                             "absolute -top-3 -right-3 w-10 h-10 rounded-full",
-                            "bg-gradient-to-br from-primary to-secondary",
+                            "bg-primary",
                             "flex items-center justify-center",
                             "text-sm font-bold text-white",
                             "shadow-lg shadow-primary/25"
@@ -559,7 +485,7 @@ export default function DocumenterPage() {
                   whileInView={{ scaleY: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 1, delay: 0.3 }}
-                  className="absolute top-0 bottom-0 left-6 w-px bg-gradient-to-b from-primary via-secondary to-accent origin-top"
+                  className="absolute top-0 bottom-0 left-6 w-px bg-primary/40 origin-top"
                 />
 
                 <div className="space-y-12">
@@ -576,7 +502,7 @@ export default function DocumenterPage() {
                       <div
                         className={cn(
                           "absolute left-0 top-0 w-12 h-12 rounded-xl",
-                          "bg-gradient-to-br from-primary to-secondary",
+                          "bg-primary",
                           "flex items-center justify-center",
                           "text-sm font-bold text-white",
                           "shadow-lg shadow-primary/25"
@@ -613,27 +539,19 @@ export default function DocumenterPage() {
           </Container>
         </section>
 
+        <SectionDivider />
+
         {/* ━━━ FEATURES GRID ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
         <section className="relative py-24 md:py-32">
           <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-b from-background-alt/50 to-background" />
+            <div className="absolute inset-0 bg-background-alt" />
           </div>
 
           <Container>
-            <motion.div
-              {...fadeInUp}
-              transition={{ duration: 0.5 }}
-              className="text-center mb-16 md:mb-20"
-            >
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                Everything You Need
-              </h2>
-              <p className="text-foreground-muted text-lg max-w-2xl mx-auto">
-                A complete toolkit for generating, managing, and exporting PLC
-                documentation.
-              </p>
-            </motion.div>
+            <SectionHeading
+              title="Everything You Need"
+              subtitle="A complete toolkit for generating, managing, and exporting PLC documentation."
+            />
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {features.map((feature, index) => (
@@ -678,25 +596,16 @@ export default function DocumenterPage() {
           </Container>
         </section>
 
+        <SectionDivider />
+
         {/* ━━━ PRICING ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
         <section className="relative py-24 md:py-32 overflow-hidden">
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-          </div>
 
           <Container>
-            <motion.div
-              {...fadeInUp}
-              transition={{ duration: 0.5 }}
-              className="text-center mb-16 md:mb-20"
-            >
-              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                Simple Pricing
-              </h2>
-              <p className="text-foreground-muted text-lg max-w-2xl mx-auto">
-                Start free. Upgrade when you need more.
-              </p>
-            </motion.div>
+            <SectionHeading
+              title="Simple Pricing"
+              subtitle="Start free. Upgrade when you need more."
+            />
 
             <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
               {pricingTiers.map((tier, index) => (
@@ -709,7 +618,7 @@ export default function DocumenterPage() {
                   className="relative"
                 >
                   {tier.highlighted && (
-                    <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary via-secondary to-accent -z-10" />
+                    <div className="absolute -inset-px rounded-2xl bg-primary -z-10" />
                   )}
                   <Card
                     variant={tier.highlighted ? "default" : "glow"}
@@ -796,11 +705,12 @@ export default function DocumenterPage() {
           </Container>
         </section>
 
+        <SectionDivider />
+
         {/* ━━━ FINAL CTA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
         <section className="relative py-24 md:py-32">
           <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-b from-background-alt/50 to-background" />
+            <div className="absolute inset-0 bg-background-alt" />
           </div>
 
           <Container>
@@ -822,7 +732,7 @@ export default function DocumenterPage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href={`${DOCUMENTER_APP_URL}/signup`}>
                   <Button
-                    variant="gradient"
+                    variant="primary"
                     size="lg"
                     className="w-full sm:w-auto"
                   >

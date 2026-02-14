@@ -20,43 +20,21 @@ const buttonVariants = cva(
       variant: {
         primary: [
           "bg-primary text-white",
-          "shadow-lg shadow-primary/25",
-          "hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30",
+          "shadow-md shadow-primary/15",
+          "hover:bg-primary-light hover:shadow-lg hover:shadow-primary/20",
           "active:bg-primary-dark",
-        ],
-        secondary: [
-          "bg-secondary text-white",
-          "shadow-lg shadow-secondary/25",
-          "hover:bg-secondary-light hover:shadow-xl hover:shadow-secondary/30",
-          "active:bg-secondary-dark",
-        ],
-        gradient: [
-          "bg-gradient-to-r from-primary via-secondary to-accent",
-          "text-white",
-          "shadow-lg shadow-primary/20",
-          "hover:shadow-xl hover:shadow-secondary/30",
-          "before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary-light before:via-secondary-light before:to-accent-light",
-          "before:opacity-0 before:transition-opacity before:duration-300",
-          "hover:before:opacity-100",
-          "[&>*]:relative [&>*]:z-10",
         ],
         outline: [
           "bg-transparent",
           "border-2 border-border",
           "text-foreground",
           "hover:border-primary hover:text-primary",
-          "hover:shadow-lg hover:shadow-primary/10",
+          "hover:shadow-md hover:shadow-primary/10",
         ],
         ghost: [
           "bg-transparent",
           "text-foreground-muted",
-          "hover:text-foreground hover:bg-background-elevated",
-        ],
-        energy: [
-          "bg-energy text-white",
-          "shadow-lg shadow-energy/25",
-          "hover:bg-energy-light hover:shadow-xl hover:shadow-energy/30",
-          "active:bg-energy-dark",
+          "hover:text-foreground hover:bg-background-alt",
         ],
       },
       size: {
@@ -84,7 +62,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <motion.button
         ref={ref}
         className={cn(buttonVariants({ variant, size, className }))}
-        whileHover={{ scale: 1.02, y: -2 }}
+        whileHover={{ scale: 1.01, y: -1 }}
         whileTap={{ scale: 0.98 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
         {...props}

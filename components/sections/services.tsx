@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Cog, Bot, Lightbulb, Plug, Check } from "lucide-react";
-import { Card, Container, IconBox } from "@/components/ui";
-import { cn } from "@/lib/utils";
+import { Card, Container, IconBox, SectionHeading } from "@/components/ui";
 
 const services = [
   {
@@ -17,7 +17,7 @@ const services = [
       "Automated reporting & alerts",
       "Custom workflow builders",
     ],
-    color: "primary" as const,
+    accentHighlight: true,
   },
   {
     icon: Bot,
@@ -30,7 +30,7 @@ const services = [
       "Document processing & analysis",
       "AI-enhanced decision tools",
     ],
-    color: "secondary" as const,
+    accentHighlight: false,
   },
   {
     icon: Lightbulb,
@@ -43,7 +43,7 @@ const services = [
       "Automation opportunity audit",
       "ROI-focused recommendations",
     ],
-    color: "accent" as const,
+    accentHighlight: false,
   },
   {
     icon: Plug,
@@ -56,59 +56,73 @@ const services = [
       "Third-party API connections",
       "Data migration & sync",
     ],
-    color: "energy" as const,
+    accentHighlight: true,
   },
 ];
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-100px" },
-};
+function TiltCard({ children, index }: { children: React.ReactNode; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [4, -4]), { stiffness: 300, damping: 30 });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-4, 4]), { stiffness: 300, damping: 30 });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ rotateX, rotateY, transformPerspective: 800 }}
+      className="will-change-transform"
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export function Services() {
   return (
-    <section id="services" className="relative py-24 md:py-32">
-      {/* Background accent */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background-alt/50 to-background" />
-      </div>
-
+    <section id="services" className="relative py-24 md:py-32 bg-background-alt">
       <Container>
-        {/* Section Header */}
-        <motion.div
-          {...fadeInUp}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16 md:mb-20"
-        >
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            What We Build
-          </h2>
-          <p className="text-foreground-muted text-lg max-w-2xl mx-auto">
-            Practical AI automation solutions tailored to your business needs.
-          </p>
-        </motion.div>
+        <SectionHeading
+          title="What We Build"
+          subtitle="Practical AI automation solutions tailored to your business needs."
+        />
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
+            <TiltCard key={service.title} index={index}>
               <Card
                 variant="glow"
                 padding="lg"
-                className="h-full group"
+                className="h-full group relative overflow-hidden"
+                hover={false}
               >
+                {/* Accent top border that reveals on hover */}
+                <div className={`absolute top-0 left-0 right-0 h-[3px] transition-transform duration-500 origin-left scale-x-0 group-hover:scale-x-100 ${service.accentHighlight ? "bg-accent" : "bg-primary"}`} />
+
                 <div className="flex flex-col h-full">
                   {/* Icon */}
                   <IconBox
-                    variant={service.color}
+                    variant={service.accentHighlight ? "accent" : "primary"}
                     size="lg"
                     className="mb-6"
                   >
@@ -133,13 +147,7 @@ export function Services() {
                         className="flex items-start gap-3 text-sm"
                       >
                         <span
-                          className={cn(
-                            "flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
-                            service.color === "primary" && "bg-primary/20 text-primary",
-                            service.color === "secondary" && "bg-secondary/20 text-secondary",
-                            service.color === "accent" && "bg-accent/20 text-accent",
-                            service.color === "energy" && "bg-energy/20 text-energy"
-                          )}
+                          className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 ${service.accentHighlight ? "bg-accent/10 text-accent-dark" : "bg-primary/10 text-primary"}`}
                           aria-hidden="true"
                         >
                           <Check size={12} aria-hidden="true" />
@@ -150,7 +158,7 @@ export function Services() {
                   </ul>
                 </div>
               </Card>
-            </motion.div>
+            </TiltCard>
           ))}
         </div>
       </Container>

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FileCode, Check, ArrowRight } from "lucide-react";
-import { Card, Container, IconBox, Badge } from "@/components/ui";
+import { Card, Container, IconBox, Badge, SectionHeading } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -18,41 +18,19 @@ const products = [
       "Cross-reference mapping between tags and logic",
       "Export to PDF & Excel with one click",
     ],
-    color: "accent" as const,
     href: "/products/documenter",
     status: "Coming Soon",
   },
 ];
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-100px" },
-};
-
 export function Products() {
   return (
     <section id="products" className="relative py-24 md:py-32">
-      {/* Background accent */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background-alt/50 to-background" />
-      </div>
-
       <Container>
-        {/* Section Header */}
-        <motion.div
-          {...fadeInUp}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16 md:mb-20"
-        >
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Our Products
-          </h2>
-          <p className="text-foreground-muted text-lg max-w-2xl mx-auto">
-            Tools we&apos;ve built to solve real problems.
-          </p>
-        </motion.div>
+        <SectionHeading
+          title="Our Products"
+          subtitle="Tools we've built to solve real problems."
+        />
 
         {/* Products Grid */}
         <div className="max-w-2xl mx-auto">
@@ -67,13 +45,16 @@ export function Products() {
               <Card
                 variant="glow"
                 padding="lg"
-                className="h-full group"
+                className="h-full group relative overflow-hidden"
               >
+                {/* Accent left border */}
+                <div className="absolute top-0 left-0 bottom-0 w-[3px] bg-accent" />
+
                 <div className="flex flex-col h-full">
                   {/* Icon + Badge Row */}
                   <div className="flex items-start justify-between mb-6">
                     <IconBox
-                      variant={product.color}
+                      variant="accent"
                       size="lg"
                     >
                       <product.icon aria-label={product.iconLabel} role="img" />
@@ -102,10 +83,7 @@ export function Products() {
                         className="flex items-start gap-3 text-sm"
                       >
                         <span
-                          className={cn(
-                            "flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5",
-                            "bg-accent/20 text-accent"
-                          )}
+                          className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 bg-accent/10 text-accent-dark"
                           aria-hidden="true"
                         >
                           <Check size={12} aria-hidden="true" />
@@ -120,8 +98,8 @@ export function Products() {
                     href={product.href}
                     className={cn(
                       "inline-flex items-center gap-2 mt-auto",
-                      "text-accent font-medium",
-                      "hover:text-accent-light transition-colors duration-200",
+                      "text-accent-dark font-medium",
+                      "hover:text-primary transition-colors duration-200",
                       "group/link"
                     )}
                   >

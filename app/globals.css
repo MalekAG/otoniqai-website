@@ -1,49 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  /* === PRIMARY COLORS === */
-  --primary: #3B82F6;
-  --primary-light: #60A5FA;
-  --primary-dark: #2563EB;
+  /* === PRIMARY (Deep Teal) === */
+  --primary: #0D5E6B;
+  --primary-light: #11798A;
+  --primary-dark: #0A4E59;
 
-  /* === SECONDARY - Vibrant Violet === */
-  --secondary: #8B5CF6;
-  --secondary-light: #A78BFA;
-  --secondary-dark: #7C3AED;
+  /* === ACCENT (Warm Sand) === */
+  --accent: #D4A574;
+  --accent-light: #E0BB92;
+  --accent-dark: #C48F5C;
 
-  /* === ACCENT - Electric Cyan === */
-  --accent: #06B6D4;
-  --accent-light: #22D3EE;
-  --accent-dark: #0891B2;
-
-  /* === ENERGY - Hot Pink (CTAs) === */
-  --energy: #EC4899;
-  --energy-light: #F472B6;
-  --energy-dark: #DB2777;
-
-  /* === BACKGROUND - Dark Theme === */
-  --background: #0A0A0F;
-  --background-alt: #12121A;
-  --background-elevated: #1A1A25;
+  /* === BACKGROUND (Warm Stone) === */
+  --background: #FAF8F5;
+  --background-alt: #F0EDEA;
+  --background-elevated: #FFFFFF;
 
   /* === TEXT === */
-  --foreground: #F8FAFC;
-  --foreground-muted: #94A3B8;
+  --foreground: #1A1A1A;
+  --foreground-muted: #5C5C5C;
 
   /* === BORDERS === */
-  --border: #2D2D3A;
-  --border-light: #3D3D4A;
+  --border: #E2DFDB;
+  --border-light: #D1CDC8;
 
-  /* === GRADIENTS === */
-  --gradient-primary: linear-gradient(135deg, var(--primary), var(--secondary));
-  --gradient-energy: linear-gradient(135deg, var(--energy), var(--secondary));
-  --gradient-accent: linear-gradient(135deg, var(--accent), var(--primary));
-
-  /* === GLOW EFFECTS === */
-  --glow-primary: 0 0 40px rgba(59, 130, 246, 0.3);
-  --glow-secondary: 0 0 40px rgba(139, 92, 246, 0.3);
-  --glow-accent: 0 0 40px rgba(6, 182, 212, 0.3);
-  --glow-energy: 0 0 40px rgba(236, 72, 153, 0.3);
+  /* === ERROR/ENERGY (for form validation) === */
+  --energy: #C7402D;
+  --energy-light: #D9553F;
+  --energy-dark: #B53520;
 }
 
 @theme inline {
@@ -51,9 +35,6 @@
   --color-primary: var(--primary);
   --color-primary-light: var(--primary-light);
   --color-primary-dark: var(--primary-dark);
-  --color-secondary: var(--secondary);
-  --color-secondary-light: var(--secondary-light);
-  --color-secondary-dark: var(--secondary-dark);
   --color-accent: var(--accent);
   --color-accent-light: var(--accent-light);
   --color-accent-dark: var(--accent-dark);
@@ -70,7 +51,7 @@
 
   /* Fonts */
   --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* === BASE STYLES === */
@@ -89,21 +70,72 @@ body {
 /* === SELECTION === */
 ::selection {
   background: var(--primary);
-  color: var(--foreground);
+  color: #FFFFFF;
 }
 
-/* === GRADIENT TEXT UTILITY === */
+/* === GRADIENT TEXT UTILITY (now solid teal) === */
 .gradient-text {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--primary);
 }
 
 /* === FOCUS STYLES === */
 :focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
+}
+
+/* === ANIMATED ACCENT UNDERLINE === */
+@keyframes draw-underline {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* === TEXT REVEAL CLIP === */
+@keyframes reveal-up {
+  from {
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(20px);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: translateY(0);
+  }
+}
+
+.animate-reveal-up {
+  animation: reveal-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* === ANIMATED MESH GRADIENT === */
+@keyframes mesh-flow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 25%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 0% 75%;
+  }
+}
+
+.mesh-gradient {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(212, 165, 116, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(13, 94, 107, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 40% 80%, rgba(212, 165, 116, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(13, 94, 107, 0.04) 0%, transparent 50%);
+  background-size: 200% 200%;
+  animation: mesh-flow 20s ease-in-out infinite;
+}
+
+/* === NAV LINK MAGNETIC HOVER === */
+@keyframes accent-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
 }
 
 /* === SCROLLBAR === */
@@ -117,10 +149,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: var(--border-light);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--border-light);
+  background: var(--primary-light);
 }

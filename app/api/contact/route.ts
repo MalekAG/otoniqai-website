@@ -48,39 +48,41 @@ export async function POST(request: Request) {
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
           </head>
-          <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <div style="background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%); padding: 30px; border-radius: 12px 12px 0 0;">
+          <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #2D2D2D; max-width: 600px; margin: 0 auto; padding: 20px; background: #FAF8F5;">
+            <div style="background: #0D5E6B; padding: 30px; border-radius: 12px 12px 0 0;">
+              <img src="https://otoniqai.com/OtoniqAILogo.svg" alt="Otoniq AI" width="56" height="56" style="display: block; margin-bottom: 16px;">
               <h1 style="color: white; margin: 0; font-size: 24px;">New Contact Form Submission</h1>
+              <div style="width: 40px; height: 3px; background: #D4A574; border-radius: 2px; margin-top: 12px;"></div>
             </div>
 
-            <div style="background: #f8fafc; padding: 30px; border: 1px solid #e2e8f0; border-top: none; border-radius: 0 0 12px 12px;">
+            <div style="background: #FFFFFF; padding: 30px; border: 1px solid #F0EDEA; border-top: none; border-radius: 0 0 12px 12px;">
               <div style="margin-bottom: 20px;">
-                <p style="margin: 0 0 5px 0; font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Name</p>
-                <p style="margin: 0; font-size: 16px; font-weight: 500;">${escapeHtml(name)}</p>
+                <p style="margin: 0 0 5px 0; font-size: 12px; color: #8A8A8A; text-transform: uppercase; letter-spacing: 0.5px;">Name</p>
+                <p style="margin: 0; font-size: 16px; font-weight: 500; color: #2D2D2D;">${escapeHtml(name)}</p>
               </div>
 
               <div style="margin-bottom: 20px;">
-                <p style="margin: 0 0 5px 0; font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Email</p>
-                <p style="margin: 0; font-size: 16px;"><a href="mailto:${escapeHtml(email)}" style="color: #3B82F6;">${escapeHtml(email)}</a></p>
+                <p style="margin: 0 0 5px 0; font-size: 12px; color: #8A8A8A; text-transform: uppercase; letter-spacing: 0.5px;">Email</p>
+                <p style="margin: 0; font-size: 16px;"><a href="mailto:${escapeHtml(email)}" style="color: #0D5E6B; text-decoration: none;">${escapeHtml(email)}</a></p>
               </div>
 
               ${company ? `
               <div style="margin-bottom: 20px;">
-                <p style="margin: 0 0 5px 0; font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Company</p>
-                <p style="margin: 0; font-size: 16px;">${escapeHtml(company)}</p>
+                <p style="margin: 0 0 5px 0; font-size: 12px; color: #8A8A8A; text-transform: uppercase; letter-spacing: 0.5px;">Company</p>
+                <p style="margin: 0; font-size: 16px; color: #2D2D2D;">${escapeHtml(company)}</p>
               </div>
               ` : ''}
 
               <div style="margin-bottom: 20px;">
-                <p style="margin: 0 0 5px 0; font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Message</p>
-                <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0;">
-                  <p style="margin: 0; white-space: pre-wrap;">${escapeHtml(message)}</p>
+                <p style="margin: 0 0 5px 0; font-size: 12px; color: #8A8A8A; text-transform: uppercase; letter-spacing: 0.5px;">Message</p>
+                <div style="background: #FAF8F5; padding: 15px; border-radius: 8px; border-left: 3px solid #D4A574;">
+                  <p style="margin: 0; white-space: pre-wrap; color: #2D2D2D;">${escapeHtml(message)}</p>
                 </div>
               </div>
 
-              <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 25px 0;">
+              <hr style="border: none; border-top: 1px solid #F0EDEA; margin: 25px 0;">
 
-              <p style="font-size: 12px; color: #64748b; margin: 0;">
+              <p style="font-size: 12px; color: #8A8A8A; margin: 0;">
                 Reply directly to this email to respond to ${escapeHtml(name)}.
               </p>
             </div>
@@ -93,7 +95,7 @@ export async function POST(request: Request) {
     await resend.emails.send({
       from: "Otoniq AI <noreply@otoniqai.com>",
       to: [email],
-      subject: "Thanks for reaching out to Otoniq AI!",
+      subject: `We got your message, ${name} — here's what's next`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -101,30 +103,50 @@ export async function POST(request: Request) {
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
           </head>
-          <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <div style="background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%); padding: 30px; border-radius: 12px 12px 0 0; text-align: center;">
-              <h1 style="color: white; margin: 0; font-size: 24px;">Thanks for reaching out!</h1>
+          <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #2D2D2D; max-width: 600px; margin: 0 auto; padding: 20px; background: #FAF8F5;">
+            <div style="background: #0D5E6B; padding: 30px; border-radius: 12px 12px 0 0; text-align: center;">
+              <img src="https://otoniqai.com/OtoniqAILogo.svg" alt="Otoniq AI" width="56" height="56" style="display: block; margin: 0 auto 16px;">
+              <h1 style="color: white; margin: 0; font-size: 24px;">We got your message!</h1>
+              <div style="width: 40px; height: 3px; background: #D4A574; border-radius: 2px; margin: 12px auto 0;"></div>
             </div>
 
-            <div style="background: #f8fafc; padding: 30px; border: 1px solid #e2e8f0; border-top: none; border-radius: 0 0 12px 12px;">
-              <p style="font-size: 16px; margin: 0 0 20px 0;">Hi ${escapeHtml(name)},</p>
+            <div style="background: #FFFFFF; padding: 30px; border: 1px solid #F0EDEA; border-top: none; border-radius: 0 0 12px 12px;">
+              <p style="font-size: 16px; margin: 0 0 20px 0; color: #2D2D2D;">Hi ${escapeHtml(name)},</p>
 
-              <p style="margin: 0 0 20px 0;">We've received your message and appreciate you taking the time to reach out to Otoniq AI.</p>
+              <p style="margin: 0 0 24px 0; color: #5A5A5A;">Thanks for reaching out to Otoniq AI. We're on it.</p>
 
-              <p style="margin: 0 0 20px 0;">Our team will review your inquiry and get back to you within <strong>24 hours</strong>.</p>
+              <p style="margin: 0 0 12px 0; font-weight: 600; color: #0D5E6B;">Here's what happens next:</p>
+              <table style="margin: 0 0 24px 0; border-collapse: collapse; width: 100%;">
+                <tr>
+                  <td style="padding: 8px 12px 8px 0; vertical-align: top; color: #D4A574; font-weight: 700; font-size: 15px;">1.</td>
+                  <td style="padding: 8px 0; color: #5A5A5A;">We review your message and understand your needs</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 12px 8px 0; vertical-align: top; color: #D4A574; font-weight: 700; font-size: 15px;">2.</td>
+                  <td style="padding: 8px 0; color: #5A5A5A;">A team member reaches out to you personally</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 12px 8px 0; vertical-align: top; color: #D4A574; font-weight: 700; font-size: 15px;">3.</td>
+                  <td style="padding: 8px 0; color: #5A5A5A;">We schedule a free discovery call to map out your automation opportunities</td>
+                </tr>
+              </table>
 
-              <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #3B82F6; margin: 25px 0;">
-                <p style="margin: 0; font-style: italic; color: #64748b;">Your message:</p>
-                <p style="margin: 10px 0 0 0; white-space: pre-wrap;">${escapeHtml(message)}</p>
+              <div style="text-align: center; margin: 28px 0;">
+                <a href="https://calendly.com/malek-otoniqai/discovery-call" target="_blank" style="display: inline-block; background: #D4A574; color: #FFFFFF; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 15px;">Skip the wait — book your call now</a>
               </div>
 
-              <p style="margin: 0 0 10px 0;">In the meantime, if you have any urgent questions, feel free to reply to this email.</p>
+              <div style="background: #FAF8F5; padding: 16px 20px; border-radius: 8px; border-left: 3px solid #D4A574; margin: 24px 0;">
+                <p style="margin: 0; font-style: italic; color: #8A8A8A; font-size: 13px;">Your message:</p>
+                <p style="margin: 8px 0 0 0; white-space: pre-wrap; color: #2D2D2D; font-size: 14px;">${escapeHtml(message)}</p>
+              </div>
 
-              <p style="margin: 25px 0 0 0;">Best regards,<br><strong>The Otoniq AI Team</strong></p>
+              <p style="margin: 24px 0 0 0; color: #5A5A5A; font-size: 13px;">We've helped businesses automate hours of manual work — and we'd love to do the same for you.</p>
 
-              <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 25px 0;">
+              <p style="margin: 20px 0 0 0; color: #2D2D2D;">Talk soon,<br><strong>Malek — Otoniq AI</strong></p>
 
-              <p style="font-size: 12px; color: #64748b; margin: 0; text-align: center;">
+              <hr style="border: none; border-top: 1px solid #F0EDEA; margin: 25px 0;">
+
+              <p style="font-size: 12px; color: #8A8A8A; margin: 0; text-align: center;">
                 Automate. Elevate. Dominate.
               </p>
             </div>

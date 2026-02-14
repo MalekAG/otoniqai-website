@@ -34,10 +34,10 @@ export function BackToTop() {
           className={cn(
             "fixed bottom-8 right-8 z-50",
             "w-12 h-12 rounded-xl",
-            "bg-background-elevated border border-border",
+            "bg-white border border-border",
             "flex items-center justify-center",
             "text-foreground-muted hover:text-primary",
-            "hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20",
+            "hover:border-primary/30 hover:shadow-md hover:shadow-primary/10",
             "transition-colors duration-200",
             "cursor-pointer"
           )}

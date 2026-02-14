@@ -15,32 +15,12 @@ const iconBoxVariants = cva(
     variants: {
       variant: {
         primary: [
-          "bg-primary/10 text-primary",
-          "group-hover:bg-primary/20 group-hover:shadow-lg group-hover:shadow-primary/20",
-        ],
-        secondary: [
-          "bg-secondary/10 text-secondary",
-          "group-hover:bg-secondary/20 group-hover:shadow-lg group-hover:shadow-secondary/20",
+          "bg-primary/8 text-primary",
+          "group-hover:bg-primary/12",
         ],
         accent: [
-          "bg-accent/10 text-accent",
-          "group-hover:bg-accent/20 group-hover:shadow-lg group-hover:shadow-accent/20",
-        ],
-        energy: [
-          "bg-energy/10 text-energy",
-          "group-hover:bg-energy/20 group-hover:shadow-lg group-hover:shadow-energy/20",
-        ],
-        gradient: [
-          "bg-gradient-to-br from-primary/20 to-secondary/20",
-          "text-primary",
-          "group-hover:from-primary/30 group-hover:to-secondary/30",
-          "group-hover:shadow-lg group-hover:shadow-primary/20",
-        ],
-        glow: [
-          "bg-background-elevated text-primary",
-          "border border-border",
-          "group-hover:border-primary/50",
-          "group-hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]",
+          "bg-accent/10 text-accent-dark",
+          "group-hover:bg-accent/15",
         ],
       },
       size: {

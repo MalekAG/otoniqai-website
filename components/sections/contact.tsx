@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Mail, Clock, ArrowRight } from "lucide-react";
-import { Button, Card, Container, Input, Textarea } from "@/components/ui";
+import { Button, Card, Container, Input, Textarea, SectionHeading } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 interface FormData {
@@ -100,29 +100,11 @@ export function Contact() {
 
   return (
     <section id="contact" className="relative py-24 md:py-32">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background to-background-alt" />
-      </div>
-
       <Container>
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16 md:mb-20"
-        >
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Let&apos;s Talk
-          </h2>
-          <p className="text-foreground-muted text-lg max-w-2xl mx-auto">
-            Ready to explore automation possibilities? Reach out and we&apos;ll
-            schedule a free 30-minute discovery call.
-          </p>
-        </motion.div>
+        <SectionHeading
+          title="Let's Talk"
+          subtitle="Ready to explore automation possibilities? Reach out and we'll schedule a free 30-minute discovery call."
+        />
 
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Contact Form */}
@@ -140,15 +122,15 @@ export function Contact() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-12"
                 >
-                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/20 flex items-center justify-center">
-                    <Send className="w-8 h-8 text-primary" />
+                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-accent/10 flex items-center justify-center">
+                    <Send className="w-8 h-8 text-accent-dark" />
                   </div>
                   <h3 className="font-heading text-2xl font-semibold text-foreground mb-2">
                     Message Sent!
                   </h3>
                   <p className="text-foreground-muted mb-6">
-                    Thanks for reaching out. We&apos;ll get back to you within 24
-                    hours.
+                    Thanks for reaching out. We&apos;ll get back to you
+                    shortly.
                   </p>
                   <Button
                     variant="outline"
@@ -160,7 +142,7 @@ export function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {errors.submit && (
-                    <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+                    <div className="p-4 rounded-lg bg-energy/5 border border-energy/20 text-energy text-sm">
                       {errors.submit}
                     </div>
                   )}
@@ -204,7 +186,7 @@ export function Contact() {
                   />
                   <Button
                     type="submit"
-                    variant="gradient"
+                    variant="primary"
                     size="lg"
                     className="w-full"
                     disabled={isSubmitting}
@@ -245,7 +227,7 @@ export function Contact() {
             {/* Email Card */}
             <Card variant="default" padding="md">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-primary/8 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-6 h-6 text-primary" />
                 </div>
                 <div>
@@ -265,25 +247,25 @@ export function Contact() {
             {/* Response Time Card */}
             <Card variant="default" padding="md">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-secondary" />
+                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-6 h-6 text-accent-dark" />
                 </div>
                 <div>
                   <h4 className="font-heading font-semibold text-foreground mb-1">
                     Response Time
                   </h4>
                   <p className="text-foreground-muted">
-                    We typically respond within 24 hours
+                    We respond immediately
                   </p>
                 </div>
               </div>
             </Card>
 
-            {/* CTA Card */}
+            {/* CTA Card — accent themed */}
             <Card
-              variant="gradient"
+              variant="default"
               padding="lg"
-              className="bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20"
+              className="bg-accent/[0.06] border-accent/20"
             >
               <h4 className="font-heading text-lg font-semibold text-foreground mb-2">
                 Prefer a direct call?
@@ -297,7 +279,7 @@ export function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button variant="primary" size="sm" className="w-full">
+                <Button variant="primary" size="sm" className="w-full bg-accent hover:bg-accent-dark">
                   Schedule a Call
                   <ArrowRight size={16} />
                 </Button>

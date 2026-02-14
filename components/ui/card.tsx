@@ -18,19 +18,15 @@ const cardVariants = cva(
           "border border-border",
         ],
         glass: [
-          "bg-background-elevated/60",
-          "backdrop-blur-xl",
-          "border border-border/50",
+          "bg-white/80",
+          "backdrop-blur-sm",
+          "border border-border",
         ],
         glow: [
           "bg-background-elevated",
           "border border-border",
-          "hover:border-primary/50",
-          "hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]",
-        ],
-        gradient: [
-          "bg-gradient-to-br from-background-elevated to-background-alt",
-          "border border-border",
+          "hover:border-primary/30",
+          "hover:shadow-md hover:shadow-primary/5",
         ],
       },
       padding: {
@@ -63,7 +59,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
       <motion.div
         ref={ref}
         className={cn(cardVariants({ variant, padding, className }))}
-        whileHover={hover ? { y: -4, scale: 1.01 } : undefined}
+        whileHover={hover ? { y: -2, scale: 1.005 } : undefined}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         {...props}
       >

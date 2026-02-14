@@ -17,32 +17,12 @@ const badgeVariants = cva(
     variants: {
       variant: {
         primary: [
-          "bg-primary/10 text-primary",
-          "border-primary/20",
-        ],
-        secondary: [
-          "bg-secondary/10 text-secondary",
-          "border-secondary/20",
+          "bg-primary/8 text-primary",
+          "border-primary/15",
         ],
         accent: [
-          "bg-accent/10 text-accent",
+          "bg-accent/10 text-accent-dark",
           "border-accent/20",
-        ],
-        energy: [
-          "bg-energy/10 text-energy",
-          "border-energy/20",
-        ],
-        gradient: [
-          "bg-transparent",
-          "border-transparent",
-          "relative",
-          "before:absolute before:inset-0 before:rounded-full before:p-[1px]",
-          "before:bg-gradient-to-r before:from-primary before:via-secondary before:to-accent",
-          "before:-z-10",
-          "after:absolute after:inset-[1px] after:rounded-full",
-          "after:bg-background-elevated",
-          "after:-z-10",
-          "text-foreground",
         ],
         outline: [
           "bg-transparent text-foreground-muted",
