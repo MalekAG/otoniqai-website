@@ -21,43 +21,51 @@ const siteUrl = "https://otoniqai.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Otoniq AI | AI Automation & Workflow Solutions for Business",
+    default:
+      "Otoniq AI | Industrial Automation AI & Consulting | Jordan",
     template: "%s | Otoniq AI",
   },
   description:
-    "Transform your business with intelligent AI automation systems. Otoniq AI, based in Jordan, delivers custom workflow automation, AI-powered tools, process consulting, and seamless integrations for businesses in the Middle East and worldwide. Arabic AI automation experts helping you automate, elevate, and dominate.",
+    "Industrial automation AI consulting company based in Jordan. We combine Siemens PLC/SCADA expertise with AI to deliver intelligent automation for manufacturing, water treatment, and industrial operations. AI-powered PLC documentation, process optimization, and digital transformation for the Middle East and worldwide.",
   keywords: [
-    // Global keywords
-    "AI automation",
-    "workflow automation",
-    "business automation",
-    "AI tools",
-    "process automation",
-    "integration services",
+    // Industrial automation + AI (primary targets)
+    "industrial automation AI",
+    "industrial AI consulting",
+    "Siemens AI",
+    "Siemens PLC AI",
+    "SCADA AI",
+    "AI for manufacturing",
+    "AI for industrial automation",
+    "smart factory AI",
+    "industrial digital transformation",
+    "PLC documentation AI",
+    "AI-powered SCADA",
+    "industrial process optimization",
+    // AI consulting general
     "AI consulting",
-    "business process optimization",
-    "custom AI solutions",
+    "AI automation consulting",
     "automation consulting",
-    "digital transformation",
-    "intelligent automation",
-    "RPA solutions",
-    "AI integration",
-    // Arabic & Jordan specific keywords
-    "Arabic AI automation",
-    "Jordan AI automation",
-    "AI automation Jordan",
-    "Middle East AI solutions",
-    "Amman AI services",
-    "AI automation MENA",
-    "Arabic business automation",
-    "Jordan workflow automation",
+    "workflow automation",
+    "AI integration services",
+    "custom AI solutions",
+    // Jordan & Middle East
     "AI consulting Jordan",
-    "automation services Amman",
+    "AI consulting Amman",
+    "Jordan AI company",
+    "industrial automation Jordan",
+    "Siemens Jordan",
+    "SCADA consulting Jordan",
+    "Middle East AI consulting",
+    "AI automation MENA",
+    "Arabic AI consulting",
+    "Arab AI company",
     // Arabic script keywords
-    "أتمتة الذكاء الاصطناعي",
+    "استشارات الذكاء الاصطناعي الأردن",
+    "أتمتة صناعية ذكاء اصطناعي",
+    "سيمنز ذكاء اصطناعي",
     "أتمتة الأعمال الأردن",
-    "حلول الذكاء الاصطناعي",
-    "أتمتة سير العمل",
+    "حلول الذكاء الاصطناعي الصناعية",
+    "سكادا ذكاء اصطناعي",
   ],
   authors: [{ name: "Otoniq AI", url: siteUrl }],
   creator: "Otoniq AI",
@@ -70,15 +78,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteUrl,
     languages: {
-      "en": siteUrl,
-      "ar": siteUrl, // Same URL for now - update if you add Arabic version
+      en: siteUrl,
+      ar: siteUrl,
       "x-default": siteUrl,
     },
   },
   openGraph: {
-    title: "Otoniq AI | AI Automation & Workflow Solutions | Jordan",
+    title:
+      "Otoniq AI | Industrial Automation AI & Consulting | Jordan",
     description:
-      "Transform your business with intelligent AI automation systems. Based in Jordan, serving the Middle East and worldwide. Custom workflow automation, AI-powered tools, and seamless integrations.",
+      "Industrial automation meets AI. We combine Siemens PLC/SCADA engineering with artificial intelligence to transform manufacturing and industrial operations. Based in Jordan, serving the Middle East and worldwide.",
     type: "website",
     locale: "en_US",
     url: siteUrl,
@@ -88,16 +97,17 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Otoniq AI - Automate. Elevate. Dominate.",
+        alt: "Otoniq AI - Industrial Automation AI Consulting",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Otoniq AI | AI Automation & Workflow Solutions | Jordan",
+    title:
+      "Otoniq AI | Industrial Automation AI & Consulting | Jordan",
     description:
-      "Transform your business with intelligent AI automation. Based in Jordan, serving the Middle East and worldwide. Custom workflow automation & AI-powered tools.",
+      "Industrial automation meets AI. Siemens PLC/SCADA expertise combined with artificial intelligence. Based in Jordan, serving the Middle East and worldwide.",
     images: ["/og-image.png"],
     creator: "@otoniqai",
   },
@@ -129,8 +139,12 @@ const organizationSchema = {
   url: siteUrl,
   logo: `${siteUrl}/logo.svg`,
   description:
-    "We build intelligent automation systems that transform how businesses operate. AI-powered solutions for workflow automation, custom tools, and seamless integrations. Based in Jordan, serving the Middle East and worldwide.",
+    "Industrial automation AI consulting company based in Amman, Jordan. We combine Siemens PLC/SCADA engineering expertise with artificial intelligence to deliver smart factory solutions, AI-powered PLC documentation, and industrial process optimization for the Middle East and worldwide.",
   email: "malek@otoniqai.com",
+  foundingLocation: {
+    "@type": "Place",
+    name: "Amman, Jordan",
+  },
   address: {
     "@type": "PostalAddress",
     addressLocality: "Amman",
@@ -138,18 +152,23 @@ const organizationSchema = {
     addressRegion: "Amman Governorate",
   },
   areaServed: [
-    {
-      "@type": "Country",
-      name: "Jordan",
-    },
-    {
-      "@type": "GeoCircle",
-      name: "Middle East",
-    },
-    {
-      "@type": "Place",
-      name: "Worldwide",
-    },
+    { "@type": "Country", name: "Jordan" },
+    { "@type": "Country", name: "Saudi Arabia" },
+    { "@type": "Country", name: "United Arab Emirates" },
+    { "@type": "Country", name: "Qatar" },
+    { "@type": "Country", name: "Kuwait" },
+    { "@type": "Place", name: "Middle East" },
+    { "@type": "Place", name: "Worldwide" },
+  ],
+  knowsAbout: [
+    "Industrial Automation",
+    "Siemens TIA Portal",
+    "PLC Programming",
+    "SCADA Systems",
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Water Treatment Automation",
+    "Manufacturing Automation",
   ],
   sameAs: [
     // Add social media URLs when available
@@ -170,7 +189,7 @@ const websiteSchema = {
   name: "Otoniq AI",
   url: siteUrl,
   description:
-    "AI automation and workflow solutions for businesses. Transform your operations with intelligent automation systems.",
+    "Industrial automation AI consulting. Combining Siemens PLC/SCADA engineering with artificial intelligence for smart factory solutions, AI-powered documentation, and industrial process optimization.",
   publisher: {
     "@type": "Organization",
     name: "Otoniq AI",
@@ -184,7 +203,7 @@ const websiteSchema = {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  serviceType: "AI Automation Consulting",
+  serviceType: "Industrial Automation AI Consulting",
   provider: {
     "@type": "Organization",
     name: "Otoniq AI",
@@ -196,7 +215,7 @@ const serviceSchema = {
     },
   },
   description:
-    "Professional AI automation services including workflow automation, custom AI tools, process consulting, and integration services. Based in Jordan, serving businesses in the Middle East, Arab region, and worldwide.",
+    "Industrial automation AI consulting services. We combine Siemens PLC/SCADA engineering with AI to deliver smart factory solutions, AI-powered PLC documentation, process optimization, and industrial digital transformation. Based in Jordan, serving the Middle East and worldwide.",
   areaServed: [
     { "@type": "Country", name: "Jordan" },
     { "@type": "Country", name: "Saudi Arabia" },
@@ -211,46 +230,85 @@ const serviceSchema = {
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "AI Automation Services",
+    name: "Industrial AI Services",
     itemListElement: [
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Workflow Automation",
+          name: "Industrial AI Consulting",
           description:
-            "Automate repetitive tasks and streamline your business processes with custom automation solutions.",
+            "Strategic AI consulting for industrial automation, manufacturing, and process industries. Siemens TIA Portal, SCADA, and PLC expertise combined with AI.",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "AI-Powered Tools",
+          name: "AI-Powered PLC Documentation",
           description:
-            "Custom AI applications designed to solve your specific business challenges.",
+            "Automatic PLC documentation using AI. Upload Rockwell L5X or Siemens files and get complete documentation with cross-references and plain-English descriptions.",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Process Consulting",
+          name: "Smart Factory Solutions",
           description:
-            "Strategic analysis and optimization of your business processes to identify automation opportunities.",
+            "AI-driven SCADA dashboards, alarm management, predictive maintenance, and industrial process optimization for manufacturing and water treatment plants.",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Integration Services",
+          name: "Workflow & CRM Automation",
           description:
-            "Connect your existing tools and systems into a unified, efficient workflow.",
+            "Business workflow automation, CRM integration, and AI-powered sales automation for industrial and B2B companies.",
         },
       },
     ],
   },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is industrial automation AI?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Industrial automation AI combines traditional PLC/SCADA systems with artificial intelligence to create smarter factories. This includes AI-powered alarm management, predictive maintenance, automatic documentation generation, and intelligent process optimization for manufacturing and industrial operations.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How can AI improve Siemens PLC and SCADA systems?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "AI enhances Siemens PLC and SCADA systems by adding intelligent alarm prioritization, automated documentation of PLC programs, predictive analytics for equipment health, and AI-driven process optimization. Otoniq AI specializes in integrating AI with Siemens TIA Portal projects.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does Otoniq AI work with companies in Jordan and the Middle East?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, Otoniq AI is based in Amman, Jordan and serves clients across the Middle East including Jordan, Saudi Arabia, UAE, Qatar, and Kuwait. We provide services in both English and Arabic and specialize in water treatment, manufacturing, and industrial automation projects in the region.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is the PLC Documenter tool?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "The PLC Documenter is an AI-powered tool that automatically generates documentation from PLC program files. Upload your Rockwell L5X file and get complete documentation with cross-references, tag mappings, and plain-English descriptions of every routine — in minutes instead of weeks.",
+      },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -277,6 +335,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(serviceSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqSchema),
           }}
         />
       </head>

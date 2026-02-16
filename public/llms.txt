@@ -1,0 +1,30 @@
+# Otoniq AI
+
+> Industrial automation AI consulting company based in Amman, Jordan. We combine Siemens PLC/SCADA engineering expertise with artificial intelligence to deliver smart factory solutions, AI-powered documentation, and industrial process optimization for the Middle East and worldwide.
+
+Otoniq AI bridges the gap between traditional industrial automation (PLC, SCADA, HMI) and modern AI. Founded by a PLC/SCADA systems engineer with hands-on experience in Siemens TIA Portal projects for the water sector, we bring real plant-floor knowledge to AI solutions — not just software theory.
+
+We serve industrial companies, system integrators, and manufacturers across Jordan, Saudi Arabia, UAE, Qatar, Kuwait, and globally. Services available in English and Arabic.
+
+## Services
+
+- [Industrial AI Consulting](https://otoniqai.com/#services): Strategic AI consulting for manufacturing, water treatment, and industrial operations. We assess your existing PLC/SCADA infrastructure and identify where AI adds real value.
+- [AI-Powered PLC Documentation](https://otoniqai.com/products/documenter): Automatic documentation generation from PLC program files using AI. Upload Rockwell L5X files, get complete documentation with cross-references and plain-English descriptions.
+- [Smart Factory Solutions](https://otoniqai.com/#services): AI-driven SCADA dashboards, intelligent alarm management, predictive maintenance, and industrial process optimization.
+- [Workflow & CRM Automation](https://otoniqai.com/#services): Business process automation, CRM integration, and AI-powered sales automation for industrial and B2B companies.
+
+## Products
+
+- [PLC Documenter](https://otoniqai.com/products/documenter): Free AI-powered tool that parses PLC program files (Rockwell L5X, Siemens TIA Portal coming soon) and generates complete documentation with cross-references, tag mappings, and AI-written descriptions for every routine.
+
+## Contact
+
+- Email: malek@otoniqai.com
+- Location: Amman, Jordan
+- Languages: English, Arabic
+- [Book a Discovery Call](https://otoniqai.com/#contact)
+
+## Optional
+
+- [How We Work](https://otoniqai.com/#process): Our 4-step process from discovery call to launch and ongoing support.
+- [Company Stats](https://otoniqai.com/#stats): 50+ automations delivered, 12+ clients, 95% retention rate.
