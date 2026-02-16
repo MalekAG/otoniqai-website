@@ -2,9 +2,12 @@
 
 import { motion } from "framer-motion";
 import { FileCode, Check, ArrowRight } from "lucide-react";
-import { Card, Container, IconBox, Badge, SectionHeading } from "@/components/ui";
+import { Card, Container, IconBox, Badge, Button, SectionHeading } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+
+const DOCUMENTER_APP_URL =
+  process.env.NEXT_PUBLIC_DOCUMENTER_APP_URL || "https://documenter.otoniqai.com";
 
 const products = [
   {
@@ -19,7 +22,8 @@ const products = [
       "Export to PDF & Excel with one click",
     ],
     href: "/products/documenter",
-    status: "Coming Soon",
+    appHref: `${DOCUMENTER_APP_URL}/signup`,
+    status: "Live",
   },
 ];
 
@@ -93,22 +97,30 @@ export function Products() {
                     ))}
                   </ul>
 
-                  {/* Learn More Link */}
-                  <Link
-                    href={product.href}
-                    className={cn(
-                      "inline-flex items-center gap-2 mt-auto",
-                      "text-accent-dark font-medium",
-                      "hover:text-primary transition-colors duration-200",
-                      "group/link"
-                    )}
-                  >
-                    Learn More
-                    <ArrowRight
-                      size={16}
-                      className="transition-transform duration-200 group-hover/link:translate-x-1"
-                    />
-                  </Link>
+                  {/* CTA Buttons */}
+                  <div className="flex items-center gap-3 mt-auto">
+                    <a href={product.appHref}>
+                      <Button variant="primary" size="md">
+                        Try It Free
+                        <ArrowRight size={16} />
+                      </Button>
+                    </a>
+                    <Link
+                      href={product.href}
+                      className={cn(
+                        "inline-flex items-center gap-2",
+                        "text-accent-dark font-medium text-sm",
+                        "hover:text-primary transition-colors duration-200",
+                        "group/link"
+                      )}
+                    >
+                      Learn More
+                      <ArrowRight
+                        size={14}
+                        className="transition-transform duration-200 group-hover/link:translate-x-1"
+                      />
+                    </Link>
+                  </div>
                 </div>
               </Card>
             </motion.div>
