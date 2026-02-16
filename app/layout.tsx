@@ -302,10 +302,10 @@ const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "What is the PLC Documenter tool?",
+      name: "What is PLCDoc?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "The PLC Documenter is an AI-powered tool that automatically generates documentation from PLC program files. Upload your Rockwell L5X file and get complete documentation with cross-references, tag mappings, and plain-English descriptions of every routine — in minutes instead of weeks.",
+        text: "PLCDoc is an AI-powered tool that automatically generates documentation from PLC program files. Upload your Rockwell L5X file and get complete documentation with cross-references, tag mappings, and plain-English descriptions of every routine — in minutes instead of weeks.",
       },
     },
   ],

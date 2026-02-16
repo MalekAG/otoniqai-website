@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "PLC Documenter - AI-Powered PLC Documentation",
+  title: "PLCDoc - AI-Powered PLC Documentation",
   description:
     "AI-powered PLC documentation tool. Upload your Rockwell L5X or Siemens project file and get complete documentation with cross-references, tag mappings, and plain-English descriptions in minutes. Built by industrial automation engineers.",
   keywords: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "industrial automation documentation",
   ],
   openGraph: {
-    title: "PLC Documenter - AI-Powered PLC Documentation | Otoniq AI",
+    title: "PLCDoc - AI-Powered PLC Documentation | Otoniq AI",
     description:
       "Stop writing PLC documentation by hand. Upload your Rockwell L5X or Siemens file and get complete, AI-generated documentation in minutes with automatic parsing, cross-references, and plain-English descriptions.",
     type: "website",
@@ -31,13 +31,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PLC Documenter - AI-Powered PLC Documentation by Otoniq AI",
+        alt: "PLCDoc - AI-Powered PLC Documentation by Otoniq AI",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PLC Documenter - AI-Powered PLC Documentation",
+    title: "PLCDoc - AI-Powered PLC Documentation",
     description:
       "Stop writing PLC documentation by hand. Upload your PLC project file and get complete, AI-generated documentation in minutes.",
     images: ["/og-image.png"],
@@ -63,7 +63,7 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 3,
-      name: "PLC Documenter",
+      name: "PLCDoc",
       item: "https://otoniqai.com/products/documenter",
     },
   ],
@@ -72,7 +72,7 @@ const breadcrumbSchema = {
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "PLC Documenter",
+  name: "PLCDoc",
   applicationCategory: "Industrial Automation",
   operatingSystem: "Web",
   url: "https://otoniqai.com/products/documenter",
