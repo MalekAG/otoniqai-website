@@ -91,6 +91,11 @@ const productSchema = {
   },
 };
 
+// Prevents </script> tag injection when serializing JSON-LD blocks
+function safeJsonLd(obj: object): string {
+  return JSON.stringify(obj).replace(/<\/script>/gi, "<\\/script>");
+}
+
 export default function DocumenterLayout({
   children,
 }: {
@@ -101,13 +106,13 @@ export default function DocumenterLayout({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
+          __html: safeJsonLd(breadcrumbSchema),
         }}
       />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(productSchema),
+          __html: safeJsonLd(productSchema),
         }}
       />
       {children}

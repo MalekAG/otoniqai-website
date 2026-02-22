@@ -311,6 +311,11 @@ const faqSchema = {
   ],
 };
 
+// Prevents </script> tag injection when serializing JSON-LD blocks
+function safeJsonLd(obj: object): string {
+  return JSON.stringify(obj).replace(/<\/script>/gi, "<\\/script>");
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -322,25 +327,25 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
+            __html: safeJsonLd(organizationSchema),
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteSchema),
+            __html: safeJsonLd(websiteSchema),
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(serviceSchema),
+            __html: safeJsonLd(serviceSchema),
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(faqSchema),
+            __html: safeJsonLd(faqSchema),
           }}
         />
       </head>

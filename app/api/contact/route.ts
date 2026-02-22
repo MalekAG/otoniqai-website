@@ -13,21 +13,57 @@ function getResend() {
 
 // Validation schema
 const contactSchema = z.object({
-  name: z.string().min(1, "Name is required").max(100),
-  email: z.string().email("Invalid email address"),
+  name: z.string().min(1, "Name is required").max(100).regex(/^[^\r\n]+$/, "Invalid characters"),
+  email: z.string().email("Invalid email address").max(254),
   company: z.string().max(100).optional(),
   message: z.string().min(1, "Message is required").max(5000),
 });
 
+// Simple in-memory rate limiter (per serverless instance)
+// For cross-instance limiting, use @upstash/ratelimit
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 5;
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+    return true;
+  }
+  if (entry.count >= RATE_LIMIT) return false;
+  entry.count++;
+  return true;
+}
+
+const ALLOWED_ORIGINS = ["https://otoniqai.com", "http://localhost:3000"];
+
 export async function POST(request: Request) {
+  // CSRF: reject cross-origin requests from unknown origins
+  const origin = request.headers.get("origin");
+  if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  // Rate limit by IP
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+  if (!checkRateLimit(ip)) {
+    return NextResponse.json(
+      { error: "Too many requests. Please try again later." },
+      { status: 429 }
+    );
+  }
+
   try {
     const body = await request.json();
 
     // Validate input
     const result = contactSchema.safeParse(body);
     if (!result.success) {
+      console.error("Contact form validation error:", result.error.flatten());
       return NextResponse.json(
-        { error: "Validation failed", details: result.error.flatten() },
+        { error: "Invalid form data. Please check your inputs." },
         { status: 400 }
       );
     }
