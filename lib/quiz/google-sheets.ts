@@ -4,7 +4,12 @@ function getAuth() {
   const key = process.env.GOOGLE_SERVICE_ACCOUNT_KEY;
   if (!key) throw new Error("GOOGLE_SERVICE_ACCOUNT_KEY not set");
 
-  const credentials = JSON.parse(Buffer.from(key, "base64").toString());
+  let credentials;
+  try {
+    credentials = JSON.parse(Buffer.from(key, "base64").toString());
+  } catch {
+    throw new Error("GOOGLE_SERVICE_ACCOUNT_KEY contains invalid base64 or JSON");
+  }
 
   return new google.auth.GoogleAuth({
     credentials,
@@ -25,7 +30,7 @@ export async function appendLead(row: string[]) {
   await sheets.spreadsheets.values.append({
     spreadsheetId: getSheetId(),
     range: "Leads!A:Z",
-    valueInputOption: "USER_ENTERED",
+    valueInputOption: "RAW",
     requestBody: { values: [row] },
   });
 }
@@ -86,7 +91,7 @@ export async function markEmailSent(rowIndex: number, emailNumber: 1 | 2 | 3) {
   await sheets.spreadsheets.values.update({
     spreadsheetId: getSheetId(),
     range: `Leads!${col}${rowIndex}`,
-    valueInputOption: "USER_ENTERED",
+    valueInputOption: "RAW",
     requestBody: { values: [[new Date().toISOString()]] },
   });
 }

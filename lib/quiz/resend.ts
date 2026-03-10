@@ -8,5 +8,8 @@ export function getResend(): Resend | null {
   return _resend;
 }
 
-export const FROM_EMAIL =
-  process.env.RESEND_FROM_EMAIL || "OtoniqAI <onboarding@resend.dev>";
+const fallback = "OtoniqAI <onboarding@resend.dev>";
+export const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || (() => {
+  console.warn("RESEND_FROM_EMAIL not set -- using sandbox fallback");
+  return fallback;
+})();

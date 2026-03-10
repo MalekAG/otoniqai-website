@@ -10,6 +10,19 @@ const BRAND = {
 
 const BOOKING_URL = "https://calendly.com/otoniqai/discovery";
 
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function sanitizeSubject(s: string): string {
+  return s.replace(/[\r\n]/g, "").slice(0, 200);
+}
+
 function layout(body: string): string {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -53,12 +66,16 @@ export function buildDay0Email(
   topSuggestions: string[],
   tierMessage?: string,
 ): { subject: string; html: string } {
-  const tierBlock = readinessTier
+  const safeName = escapeHtml(firstName);
+  const safeTier = readinessTier ? escapeHtml(readinessTier) : "";
+  const safeTierMessage = tierMessage ? escapeHtml(tierMessage) : "";
+
+  const tierBlock = safeTier
     ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0;">
 <tr><td style="background-color:${BRAND.bg};border-left:4px solid ${BRAND.primary};padding:16px 20px;border-radius:4px;">
   <p style="margin:0 0 4px;font-size:12px;font-weight:bold;color:${BRAND.primary};text-transform:uppercase;letter-spacing:0.5px;">Your AI Readiness</p>
-  <p style="margin:0 0 4px;font-size:18px;font-weight:bold;color:${BRAND.fg};">${readinessTier}</p>
-  ${tierMessage ? `<p style="margin:0;font-size:14px;color:${BRAND.muted};">${tierMessage}</p>` : ""}
+  <p style="margin:0 0 4px;font-size:18px;font-weight:bold;color:${BRAND.fg};">${safeTier}</p>
+  ${safeTierMessage ? `<p style="margin:0;font-size:14px;color:${BRAND.muted};">${safeTierMessage}</p>` : ""}
 </td></tr>
 </table>`
     : "";
@@ -68,13 +85,13 @@ export function buildDay0Email(
       (title, i) =>
         `<tr><td style="padding:10px 0;border-bottom:1px solid #F0F0F0;">
   <span style="display:inline-block;width:24px;height:24px;background-color:${i === 0 ? BRAND.accent : BRAND.primary};color:#ffffff;border-radius:50%;text-align:center;line-height:24px;font-size:13px;font-weight:bold;margin-right:12px;">${i + 1}</span>
-  <span style="font-size:15px;font-weight:600;color:${BRAND.fg};">${title}</span>
+  <span style="font-size:15px;font-weight:600;color:${BRAND.fg};">${escapeHtml(title)}</span>
 </td></tr>`,
     )
     .join("");
 
   const body = `
-<p style="font-size:16px;line-height:1.6;color:${BRAND.fg};margin:0 0 16px;">Hi ${firstName},</p>
+<p style="font-size:16px;line-height:1.6;color:${BRAND.fg};margin:0 0 16px;">Hi ${safeName},</p>
 <p style="font-size:15px;line-height:1.6;color:${BRAND.fg};margin:0 0 8px;">Thanks for taking our AI Readiness Quiz! Here's a summary of your personalized results.</p>
 ${tierBlock}
 <p style="font-size:13px;font-weight:bold;color:${BRAND.primary};text-transform:uppercase;letter-spacing:0.5px;margin:24px 0 12px;">Your Top AI Opportunities</p>
@@ -86,7 +103,7 @@ ${ctaButton("Book Your Free Results Review")}
 <p style="font-size:14px;line-height:1.6;color:${BRAND.muted};margin:0;">Cheers,<br>The OtoniqAI Team</p>`;
 
   return {
-    subject: `${firstName}, your AI automation playbook is ready`,
+    subject: sanitizeSubject(`${escapeHtml(firstName)}, your AI automation playbook is ready`),
     html: layout(body),
   };
 }
@@ -96,13 +113,15 @@ export function buildDay3Email(
   topSuggestionTitle: string,
   path: string,
 ): { subject: string; html: string } {
+  const safeName = escapeHtml(firstName);
+  const safeTitle = escapeHtml(topSuggestionTitle);
   const suggestion = allSuggestions.find((s) => s.title === topSuggestionTitle);
 
   const quickStartBlock = suggestion
     ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0;">
 <tr><td style="background-color:${BRAND.bg};padding:16px 20px;border-radius:6px;">
   <p style="margin:0 0 8px;font-size:13px;font-weight:bold;color:${BRAND.primary};text-transform:uppercase;">Quick Start</p>
-  <p style="margin:0;font-size:14px;line-height:1.6;color:${BRAND.fg};">${suggestion.quickStart}</p>
+  <p style="margin:0;font-size:14px;line-height:1.6;color:${BRAND.fg};">${escapeHtml(suggestion.quickStart)}</p>
 </td></tr>
 </table>`
     : "";
@@ -111,7 +130,7 @@ export function buildDay3Email(
     ? suggestion.tools
         .map(
           (t) =>
-            `<li style="padding:4px 0;font-size:14px;color:${BRAND.fg};"><strong>${t.name}</strong> <span style="color:${BRAND.muted};">(${t.note})</span></li>`,
+            `<li style="padding:4px 0;font-size:14px;color:${BRAND.fg};"><strong>${escapeHtml(t.name)}</strong> <span style="color:${BRAND.muted};">(${escapeHtml(t.note)})</span></li>`,
         )
         .join("")
     : "";
@@ -123,7 +142,7 @@ export function buildDay3Email(
 
   const learnBlock =
     suggestion?.learnHowUrl
-      ? `<p style="margin:20px 0 0;"><a href="${suggestion.learnHowUrl}" target="_blank" style="color:${BRAND.primary};font-size:14px;font-weight:600;text-decoration:underline;">${suggestion.learnHowLabel || "Learn how to set this up"} &rarr;</a></p>`
+      ? `<p style="margin:20px 0 0;"><a href="${suggestion.learnHowUrl}" target="_blank" style="color:${BRAND.primary};font-size:14px;font-weight:600;text-decoration:underline;">${escapeHtml(suggestion.learnHowLabel || "Learn how to set this up")} &rarr;</a></p>`
       : "";
 
   const pathMessage =
@@ -134,8 +153,8 @@ export function buildDay3Email(
         : "Whether it's support or sales, businesses that automate one workflow first see the fastest results. Start with your biggest time sink.";
 
   const body = `
-<p style="font-size:16px;line-height:1.6;color:${BRAND.fg};margin:0 0 16px;">Hi ${firstName},</p>
-<p style="font-size:15px;line-height:1.6;color:${BRAND.fg};margin:0 0 8px;">In your AI Readiness Quiz results, <strong>${topSuggestionTitle}</strong> came up as your top opportunity. Here's how to get started this week:</p>
+<p style="font-size:16px;line-height:1.6;color:${BRAND.fg};margin:0 0 16px;">Hi ${safeName},</p>
+<p style="font-size:15px;line-height:1.6;color:${BRAND.fg};margin:0 0 8px;">In your AI Readiness Quiz results, <strong>${safeTitle}</strong> came up as your top opportunity. Here's how to get started this week:</p>
 ${quickStartBlock}
 ${toolsBlock}
 ${learnBlock}
@@ -145,14 +164,16 @@ ${ctaButton("Book Your Free Results Review")}
 <p style="font-size:14px;line-height:1.6;color:${BRAND.muted};margin:0;">Cheers,<br>The OtoniqAI Team</p>`;
 
   return {
-    subject: `How to get started with ${topSuggestionTitle}`,
+    subject: sanitizeSubject(`How to get started with ${safeTitle}`),
     html: layout(body),
   };
 }
 
 export function buildDay7Email(firstName: string): { subject: string; html: string } {
+  const safeName = escapeHtml(firstName);
+
   const body = `
-<p style="font-size:16px;line-height:1.6;color:${BRAND.fg};margin:0 0 16px;">Hi ${firstName},</p>
+<p style="font-size:16px;line-height:1.6;color:${BRAND.fg};margin:0 0 16px;">Hi ${safeName},</p>
 <p style="font-size:15px;line-height:1.6;color:${BRAND.fg};margin:0 0 20px;">It's been a week since you took our AI Readiness Quiz. Here's what we're seeing across businesses like yours:</p>
 
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 24px;">
@@ -184,7 +205,7 @@ ${ctaButton("Book Your Free 20-Min Results Review")}
 <p style="font-size:14px;line-height:1.6;color:${BRAND.muted};margin:16px 0 0;">Cheers,<br>The OtoniqAI Team</p>`;
 
   return {
-    subject: `${firstName}, how businesses like yours are using AI`,
+    subject: sanitizeSubject(`${escapeHtml(firstName)}, how businesses like yours are using AI`),
     html: layout(body),
   };
 }

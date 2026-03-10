@@ -6,17 +6,23 @@ import { buildDay3Email, buildDay7Email } from "@/lib/quiz/email-templates";
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 export async function GET(request: Request) {
-  // Verify cron secret (Vercel sends this automatically for cron jobs)
+  // Auth is enforced by middleware.ts -- this is defense-in-depth
   const authHeader = request.headers.get("authorization");
   const cronSecret = process.env.CRON_SECRET;
 
-  if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
+  if (!cronSecret) {
+    console.error("CRON_SECRET not configured -- rejecting cron request");
+    return NextResponse.json({ error: "Server misconfiguration" }, { status: 500 });
+  }
+
+  if (authHeader !== `Bearer ${cronSecret}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const resend = getResend();
   if (!resend) {
-    return NextResponse.json({ error: "RESEND_API_KEY not configured" }, { status: 500 });
+    console.error("RESEND_API_KEY not configured");
+    return NextResponse.json({ error: "Service unavailable" }, { status: 500 });
   }
 
   const leads = await getLeadsForFollowUp();
@@ -54,15 +60,12 @@ export async function GET(request: Request) {
         }
       }
     } catch (err) {
-      console.error(`Email follow-up failed for row ${lead.rowIndex}:`, err);
+      console.error("Email follow-up failed:", err instanceof Error ? err.message : "Unknown error");
       errors++;
     }
   }
 
-  return NextResponse.json({
-    processed: leads.length,
-    day3Sent: sent2,
-    day7Sent: sent3,
-    errors,
-  });
+  // Log details server-side, return minimal response
+  console.log(`Cron complete: processed=${leads.length} day3=${sent2} day7=${sent3} errors=${errors}`);
+  return NextResponse.json({ ok: true });
 }
