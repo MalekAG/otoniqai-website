@@ -10,7 +10,7 @@ npm run build    # Production build
 npm run lint     # Check code
 
 ## Stack
-- Next.js 14+ (App Router)
+- Next.js 16 (App Router)
 - Tailwind CSS, TypeScript
 - Deployed on Vercel (auto-deploy on push to main)
 
